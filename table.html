@@ -6,48 +6,41 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <style type="text/css">
-        .form-1 {
-            /* Размер и положение */
-            width: 500px;
-            margin: 10px auto 10px;
-            padding: 10px;
-            position: relative; /* For the submit button positioning */
-
-            /* Styles */
-            box-shadow:
-                    0 0 1px rgba(0, 0, 0, 0.3),
-                    0 3px 7px rgba(0, 0, 0, 0.3),
-                    inset 0 1px rgba(255,255,255,1),
-                    inset 0 -3px 2px rgba(0,0,0,0.25);
-            border-radius: 5px;
-            background: linear-gradient(#eeefef, #ffffff 10%);
-        }
-
-        #messagesReadTextArea {
-            /* Размер и положение */
-            height: 400px;
-        }
-    </style>
+    
 </head>
 <body>
-    <script src="https://code.jquery.com/jquery-latest.js"></script>
-
-    <form class="form-1">
-        <div class="form-group">
-            <label for="messagesReadTextArea">Сообщения</label>
-            <textarea readonly class="form-control" id="messagesReadTextArea" rows="3"></textarea>
-            <br>
-            <textarea class="form-control" id="messageInputTextArea" rows="3"></textarea>
-            <br>
-            <button type="submit" class="btn btn-primary" onclick="postSendMessage('abc')">Отправить</button>
-
-        </div>
-    </form>
-
     
-
-
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Username</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
