@@ -1,0 +1,94 @@
+
+<html>
+<head>
+    <title>WebChat</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <style type="text/css">
+        .form-1 {
+            /* Размер и положение */
+            width: 500px;
+            margin: 10px auto 10px;
+            padding: 10px;
+            position: relative; /* For the submit button positioning */
+
+            /* Styles */
+            box-shadow:
+                    0 0 1px rgba(0, 0, 0, 0.3),
+                    0 3px 7px rgba(0, 0, 0, 0.3),
+                    inset 0 1px rgba(255,255,255,1),
+                    inset 0 -3px 2px rgba(0,0,0,0.25);
+            border-radius: 5px;
+            background: linear-gradient(#eeefef, #ffffff 10%);
+        }
+
+        #messagesReadTextArea {
+            /* Размер и положение */
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+
+    <form class="form-1">
+        <div class="form-group">
+            <label for="messagesReadTextArea">Сообщения</label>
+            <textarea readonly class="form-control" id="messagesReadTextArea" rows="3"></textarea>
+            <br>
+            <textarea class="form-control" id="messageInputTextArea" rows="3"></textarea>
+            <br>
+            <button type="submit" class="btn btn-primary" onclick="postSendMessage('abc')">Отправить</button>
+
+        </div>
+    </form>
+
+    <script language="JavaScript">
+        function getAllMessages()
+        {
+            $.ajax({
+                type: "GET",
+                contentType: "application/json",
+                url: "message/",
+                cache: false,
+                success: function(messages){
+                    $('#messagesReadTextArea').val(messages.join("\n"));
+                }
+            });
+        }
+
+        function postSendMessage(message)
+        {
+            message = $('#messageInputTextArea').val();
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "message/addnew/",
+                data: '"' + message + '"',
+                cache: false,
+                success: function(otvetServera){
+                    $('#messageInputTextArea').val('');
+                    console.log(otvetServera);
+                }
+            });
+        }
+
+        (function () {
+            setInterval(getAllMessages, 1000);
+        }());
+
+    </script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    --><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
