@@ -1,0 +1,97 @@
+<html>
+<head>
+	<title>Англотренажер v.0.0.3</title>
+	<style type="text/css">
+		svg {border:1px solid black;}
+	</style>
+</head>
+<body>
+<h1 id="vopros"></h1>
+<input type="text" name="inputWord" id="inputWord" autofocus><br><br>
+<input value="Проверить" onclick="checkWord(takeInputWord())" type="button"><br><br>
+<h2 id="podskazka"></h2>
+<input value="Подсказка" onclick="takePodskazka()" type="button">
+
+<script language="JavaScript">
+	var currentWord = "";
+	var words = [];
+	
+	var Slovo = function (naEnglish, naRussian) {
+		this.naEnglish = naEnglish;
+		this.naRussian = naRussian;
+	};
+
+	function takeRandomWord(wordsArray) {
+		return wordsArray[Math.floor(Math.random() * wordsArray.length)];
+	};
+	
+	function updateWordView() {
+		document.getElementById("vopros").innerHTML = "Как будет на английском <" + currentWord.naRussian + ">?";
+	};
+	
+	function takeInputWord() {		
+		return document.getElementById("inputWord").value;
+	};
+	
+	function clearInputWord() {		
+		document.getElementById("inputWord").focus();
+		document.getElementById("inputWord").value = "";
+	};
+		
+	function takePodskazka() {
+		document.getElementById("podskazka").innerHTML = currentWord.naRussian + " - " + currentWord.naEnglish;
+	};
+	
+	function checkWord(word) {
+		if(word === currentWord.naEnglish) { //Если пользователь правильно ввел
+			document.getElementById("podskazka").innerHTML = "Ты крут, чувак!";//поздравить пользователя 
+			//можно выводить разные сообщения
+			clearInputWord(); //почистить поле
+			currentWord = takeRandomWord(words); //перейти к следующему слову
+			updateWordView(); //вывести на экран новое слово
+			//сделать автофокус на input поле
+		} else { //Если неправильно ответил пользователь
+			document.getElementById("podskazka").innerHTML = "Хорошо лажать, чувак! Ты не ты когда голоден!";//сообщить пользователю что он не правильно ответил
+			document.getElementById("inputWord").focus();
+			//можно выводить разные сообщения
+		}
+	};
+	
+	(function (){
+		/*words[0] = new Slovo("pen", "ручка");
+		words[1] = new Slovo("mouse", "мышь");
+		words[2] = new Slovo("keyboard", "клавиатура");
+		words[3] = new Slovo("paper", "бумага");
+		words[4] = new Slovo("color", "цвет");*/
+		words.push(new Slovo("limitation", "ограничениe"));
+		words.push(new Slovo("follow", "следовать"));
+		words.push(new Slovo("following", "следующий"));
+		words.push(new Slovo("implicit", "неявно"));
+		words.push(new Slovo("which", "который"));
+		words.push(new Slovo("note that a", "обратите внимание что"));
+		words.push(new Slovo("derives", "получать"));
+		words.push(new Slovo("explain", "объяснять"));
+		words.push(new Slovo("finally", "в заключение"));
+		words.push(new Slovo("describe", "описывать"));
+		words.push(new Slovo("however", "однако"));
+		words.push(new Slovo("must", "должен"));
+		//words.push(new Slovo("provide", "предоставлять"));
+		words.push(new Slovo("provide", "обеспечивать"));
+		words.push(new Slovo("sufficient", "достаточно"));
+		words.push(new Slovo("become", "становиться"));
+		words.push(new Slovo("edition", "выпуск"));
+		words.push(new Slovo("overview", "обзор"));
+		words.push(new Slovo("support", "поддержка"));
+		words.push(new Slovo("indicate", "показывать"));
+		
+		//words.push(new Slovo("", ""));
+		currentWord = takeRandomWord(words);
+		updateWordView();
+		//сделать автофокус на input поле
+		//забиндить нажатие клавиши enter на проверку введенных данных
+		//угасающее поздравление
+		//сверстать все красиво на bootstrap
+	}());
+</script>
+</body>
+</html>
