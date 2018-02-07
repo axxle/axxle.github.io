@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>English words trainer</title>
+	</head>
+<body>
+<h1 id="wordOutputArea"></h1>
+	<p>
+		<input value="next word" onclick="nextRandomWord(englishWords)" type="button"><br>
+	</p>
+<script language="JavaScript">
+	var englishWords = ["love - любить", "live - жить", "allow - позволять", "answer - отвечать"];
+
+	function nextRandomWord(wordsArray) {
+		var outputArea = document.getElementById("wordOutputArea");
+		outputArea.innerHTML = "";
+		outputArea.innerHTML = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+	};
+
+	(function (){
+		nextRandomWord(englishWords);
+	}());
+</script>
+</body>
+</html>
