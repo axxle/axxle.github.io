@@ -10,11 +10,23 @@
 		<title>English words trainer</title>
 	</head>
 <body>
+<div class="container-fluid" id="content">
+	<div id="rusDiv" class="col-md-6">111</div>
+	<div id="engDiv" class="col-md-6">222</div>
+</div>
 <h1 id="wordOutputArea"></h1>
 	<p>
 		<input value="next word" onclick="nextRandomWord(englishWords)" type="button"><br>
 	</p>
+
 <script language="JavaScript">
+	var div = document.getElementById("rusDiv");
+	div.onclick = function (e) {
+		var e = e || window.event;
+		var target = e.target || e.srcElement;
+		if (this == target) alert("Вместо меня должно стоять модальное окно");
+	}
+
 	var englishWords = [
 		"love - любить", 
 		"live - жить", 
