@@ -1,0 +1,79 @@
+<html>
+<head>
+	<title>Главная</title>
+</head>
+<body>
+<h1>Симметричное шифрование на примере Шифра Цезаря</h1>
+<table border="0" width="100%" height="80%">
+	<tr>
+		<td>
+			<h2>Отправитель</h2>
+			<h3>Сообщение</h3>
+			<textarea id="senderMessage" cols="50" rows="7"></textarea>
+			<h3>Шифр</h3>
+			<input id="senderCypher" type="text" size="50">
+			<p><button onclick="encrypt()">Зашифровать</button></p>
+			<h3>Шифрованное сообщение</h3>
+			<textarea id="senderCryptedMessage" cols="50" rows="7"></textarea>
+		</td>
+		<td>
+			<h2>Получатель</h2>
+			<h3>Расшифрованное сообщение</h3>
+			<textarea id="receiverDecryptMessage" cols="50" rows="7"></textarea>
+			<h3>Шифр</h3>
+			<input id="receiverCypher" type="text" size="50">
+			<p><button onclick="decrypt()">Расшифровать</button></p>
+			<h3>Шифрованное сообщение</h3>
+			<textarea id="receiverEncryptMessage" cols="50" rows="7"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="green"><h2><center>Канал передачи данных<button onclick="sendMessage()">Отправить получателю</button></center></h2></td>
+	</tr>
+</table>
+<script language="JavaScript">
+	/*Шифрует*/
+	function encrypt(){
+		var data = document.getElementById('senderMessage').value;
+		var cipher = document.getElementById('senderCypher').value;
+		var out = '';
+		for(i=0; i<data.length; i++){
+			out = out + takeShiftValue(data.charCodeAt(i), +1);
+		}
+		document.getElementById('senderCryptedMessage').value = out;
+	}
+
+	/*Дешифрует*/
+	function decrypt(){
+		var idPrefix = "receiver";
+		var data = document.getElementById('receiverEncryptMessage').value;
+		var cipher = document.getElementById('receiverCypher').value;
+		var out = '';
+		for(i=0; i<data.length; i++){
+			out = out + takeShiftValue(data.charCodeAt(i), -1);
+		}
+		document.getElementById('receiverDecryptMessage').value = out;
+	}
+
+	/*Отправляет сообщение*/
+	function sendMessage(){
+		console.log('Отправка сообщения');
+		var encryptData = document.getElementById('senderCryptedMessage').value;
+		document.getElementById('receiverEncryptMessage').value = encryptData;
+	}
+
+	/*Посимвольное шифрование/дешифрование (пока оставляет регистр как есть и не учитывать алфавит символов)*/
+	function takeShiftValue(encryptCharCode, shift){
+		var decryptChar = String.fromCharCode(encryptCharCode+shift);
+		return decryptChar;
+	}
+
+	/*Самовызываемая функция*/
+	(function (){
+		document.getElementById('senderMessage').value = 'секретноесообщение';
+		document.getElementById('senderCypher').value = 'медведь';
+		document.getElementById('receiverCypher').value = 'медведь';
+	}());
+</script>
+</body>
+</html>
