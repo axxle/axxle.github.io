@@ -1,0 +1,80 @@
+<html>
+<head>
+	<title>Масштабирование по скролу мыши</title>
+	<style type="text/css">
+	#v_body {
+		margin:0 0 0 0;
+	}
+	</style>
+
+</head>
+<body id="v_body">
+<svg version="1.1"
+     baseProfile="full"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events"
+     width="100%" height="100%" viewBox="100 100 200 200" id = "vvsvg">
+	<defs>
+		<g id="ss">
+			<text x="115" y="120" id="ssBin">0 1</text>
+			<text x="115" y="120" id="ssOct">0 1 2 3 4 5 6 7</text>
+			<text x="115" y="120" id="ssDec">0 1 2 3 4 5 6 7 8 9</text>
+			<text x="115" y="120" id="ssHex">0 1 2 3 4 5 6 7 8 9 A B C D E F</text>
+		</g>
+	</defs>
+	<use x= "00" y= "010" xlink:href="#ssBin" />
+	<use x= "00" y= "030" xlink:href="#ssOct" />
+	<use x= "00" y= "050" xlink:href="#ssDec" />
+	<use x= "00" y= "070" xlink:href="#ssHex" />
+	<g id = "binaryTreeSvg"></g>
+	<text y="50" fill="red">
+		<tspan x="15" >Области применения параллелизма:</tspan>
+		<tspan x="15" dy="1.2em">Одновременное выполнение</tspan>
+		<tspan x="15" dy="1.2em">Повышение скорости вычислений при наличии вычислительных ядер</tspan>
+	</text>
+</svg>
+<script src="scalelib.js"></script>
+<script language="JavaScript">
+	/*Обработчик событий прокрутки мыши*/
+	document.onwheel = function(e) {
+		_onwheelActions(e);
+	}
+
+	/*Расчет ViewBox сдвига по позиции мыши*/
+	function calcViewBoxShift(X0, Y0, X1, Y1, mouseX, mouseY, docWidth, docHeight, svgWidth, svgHeight) {
+		console.log('calcViewBox');
+		var mousePosX = mouseX / docWidth;
+		console.log(mousePosX);
+		var mousePosY = mouseY /docHeight;
+		var shiftX = 0;
+		var shiftY = 0;
+
+		shiftX = (0.5-mousePosX)*docWidth/(docWidth / X1_old);
+		console.log('ShiftX = ' + shiftX);
+		X0 = X0 + shiftX;
+		shiftY = (0.5-mousePosY)*docHeight/(docHeight / Y1_old);
+		console.log('ShiftY = ' + shiftY);
+		Y0 = Y0 + shiftY;
+
+		if(mousePosX<0.5){
+			console.log('mousePosX<0.5 = ' + mousePosX);
+		} else {
+			console.log('mousePosX<0.5 false');
+		}
+		if(mousePosY<0.5){
+			console.log('mousePosY<0.5');
+		} else {
+			console.log('mousePosY<0.5 false');
+		}
+		return ""+X0+" "+Y0+" "+X1+" "+Y1;
+		
+	}
+
+	/*Самовызываемая функция*/
+	(function (){
+		console.log('Hello, peoples!');
+	}());
+</script>
+</body>
+</html>

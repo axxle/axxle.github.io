@@ -38,7 +38,7 @@
 		var cipher = document.getElementById('senderCypher').value;
 		var out = '';
 		for(i=0; i<data.length; i++){
-			out = out + takeShiftValue(data.charCodeAt(i), +1);
+			out = out + takeShiftValue(data.charCodeAt(i), +calcShift(cipher, data.length));
 		}
 		document.getElementById('senderCryptedMessage').value = out;
 	}
@@ -50,7 +50,7 @@
 		var cipher = document.getElementById('receiverCypher').value;
 		var out = '';
 		for(i=0; i<data.length; i++){
-			out = out + takeShiftValue(data.charCodeAt(i), -1);
+			out = out + takeShiftValue(data.charCodeAt(i), -calcShift(cipher, data.length));
 		}
 		document.getElementById('receiverDecryptMessage').value = out;
 	}
@@ -66,6 +66,12 @@
 	function takeShiftValue(encryptCharCode, shift){
 		var decryptChar = String.fromCharCode(encryptCharCode+shift);
 		return decryptChar;
+	}
+
+	/**/
+	function calcShift(cypher, dataLength){
+		var x = dataLength%cypher.length;
+		return x;
 	}
 
 	/*Самовызываемая функция*/
