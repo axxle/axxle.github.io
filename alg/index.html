@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>Random</title>
+</head>
+<body>
+<h1>Случайные числа</h1>
+<button onclick="printRandomNum(20)">Сгенерировать 20 случайных чисел (от 0 до 100)</button>
+<p><textarea id="outArea" cols="80" rows="7"></textarea></p>
+<script language="JavaScript">
+	/*Выводит массив чисел arr в outArea*/
+	function printRandomNum(arr){
+		document.getElementById('outArea').value = ""+generateRandomNum(20);
+	}
+	
+	/*Генерирует n-случайных чисел и возвращает в виде массива*/
+	function generateRandomNum(n){
+		var resultArr = [];
+		for(i=0; i<n; i++){
+			resultArr.push(randomInteger(0, 100));
+		}
+		return resultArr;
+	}
+	
+	/*Генерирует 1 случайное целое число в указанном диапазоне*/
+	function randomInteger(min, max) {
+		var rand = min - 0.5 + Math.random() * (max - min + 1)
+		rand = Math.round(rand);
+		return rand;
+	}
+	/*Самовызываемая функция*/
+	(function (){
+		printRandomNum(20);
+	}());
+</script>
+</body>
+</html>
