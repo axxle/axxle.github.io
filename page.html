@@ -1,0 +1,33 @@
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Snake</title>
+	</head>
+	
+<body>
+	<textarea rows="20" cols="20" id="numbers"></textarea>
+	<input type="button" onclick="printNumbers()" value="Получить случайные числа">
+	
+	<script>
+function generateNumbers(n){
+	var resultArray=[]; 						//создали пустой массив
+	for ( i=0; i<n; i++){ 						//повторяем n-раз (n прилетает из сигнатуры generateNumbers(n))
+		var randomNum = Math.random()*100; 		//получаем случайное число и умножаем на 100
+		randomNum = Math.floor(randomNum); 		//округляем и тем самым получаем целое число
+		resultArray.push(randomNum);						//добавляем полученное число в массив
+	}
+	return resultArray; 						//возвращаем полученный массив
+}
+
+
+function printNumbers(){
+	var ta=document.getElementById("numbers"); 	//получили ссылку на DOM-элемент (записали в переменную)
+	ta.innerHTML=""; 							//почистили textArea
+	var arr = generateNumbers(20); 				//получили массив из 20 случайных чисел
+	var str = arr.join(", "); 					//склеили массив в строку через запятую 
+	ta.innerHTML = str; 						//вывели полученную строку в textArea
+}
+	</script>
+</body>
+</html>
