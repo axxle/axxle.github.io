@@ -1,11 +1,47 @@
 <html>
 <head>
-	<title>Про svg</title>
+	<title>Цвет фона по ctrl+click</title>
 </head>
 <body>
-<h1>Про svg</h1>
-<p>
-http://css.yoksel.ru/svg-sizes/
-</p>
+<h1>Цвет фона по ctrl+click</h1>
+<h2>Сейчас:</h2>
+<div id="colorDiv">DIV</div>
+<p id="colorCounterOut"></p>
+<script>
+	var colorCounter = 0;
+	var colorArr = ["#FF0000", "#FFA500", "#00FA9A", "#FFFFFF"];
+	
+	document.body.onclick = function(e) {			//if (!e.altKey || !e.shiftKey) return;
+		//if (!e.ctrlKey) return;
+		document.getElementById("colorCounterOut").innerHTML = colorCounter + "%" + colorArr.length + "=" + (colorCounter%colorArr.length) ;
+		//document.body.bgColor=colorArr[colorCounter%colorArr.length];
+		document.getElementById("colorDiv").style.backgroundColor=colorArr[colorCounter%colorArr.length];
+		colorCounter++;
+	};
+	/*Печатает массив со светами в виде таблицы*/
+	function printColorTable(colorArr){
+		var element = document.getElementById("tab");
+		if(element == null){
+			element=document.createElement("table"); //создаем новую таблицу с тегом table
+			element.setAttribute("border", "1"); // задаем атрибут border(граница) co значением 1
+			var row=element.insertRow(0);
+			var row1=element.insertRow(1);
+			for (var j=0; j<colorArr.length; j++){
+				var cell=row.insertCell(j);
+				var cell2=row1.insertCell(j);
+				cell2.innerHTML=j;
+				cell.width="50";
+				cell.height="50";
+			   cell.bgColor=colorArr[j];
+			}
+			document.body.appendChild(element);
+		}
+	}
+	/*Самовызываемая функция*/
+	(function (){
+		document.getElementById("colorCounterOut").innerHTML = colorCounter;
+		printColorTable(colorArr);
+	}());
+</script>
 </body>
 </html>
