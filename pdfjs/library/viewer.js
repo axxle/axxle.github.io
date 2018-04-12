@@ -1,6 +1,7 @@
 // If absolute URL from the remote server is provided, configure the CORS
 // header on that server.
-var url = '//cdn.mozilla.net/pdfjs/tracemonkey.pdf';
+//var url = '//cdn.mozilla.net/pdfjs/tracemonkey.pdf';
+var url = '//axxle.github.io/pdfjs/library/jvms8.pdf';
 
 // Loaded via <script> tag, create shortcut to access PDF.js exports.
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
