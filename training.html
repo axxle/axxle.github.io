@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+		<title>English words trainer</title>
+	</head>
+<body>
+<div class="container-fluid" id="content">
+	<div class="row" style="height: 100%">
+		<div id="englishDiv" class="col-md-6" style="background-color: #ff9999"><h1 id="englishWordOut"></h1></div>
+		<div id="russianDiv" class="col-md-6" style="background-color: #99CCFF"><h1 id="russianWordOut"></h1></div>
+	</div>
+</div>
+
+<script language="JavaScript">
+	var russianDiv = document.getElementById("russianDiv");
+	russianDiv.onclick = function (e) {
+		var e = e || window.event;
+		var target = e.target || e.srcElement;
+		if (this == target) {
+			printRussianWord();
+		}
+	}
+	var englishDiv = document.getElementById("englishDiv");
+	englishDiv.onclick = function (e) {
+		var e = e || window.event;
+		var target = e.target || e.srcElement;
+		if (this == target) {
+			printEnglishWord();
+		}
+	}
+	var russianWord = "";
+	var englishWord = "";
+	function printRussianWord() {
+		var rusWord = document.getElementById("russianWordOut").innerHTML;
+		var engWord = document.getElementById("englishWordOut").innerHTML;
+		if (rusWord.length <= 0 & engWord.length > 0){ /* если русское словое не выведено в ячейку*/
+			//console.log("печатаем русское слово");
+			document.getElementById("russianWordOut").innerHTML = russianWord;
+		} else { /* русское словое выведено в ячейку*/
+			//console.log("вызываем рандомСледСлово, стираем и русское слово и английское, печатаем русское слово");
+			nextRandomWord(englishWords);
+			document.getElementById("russianWordOut").innerHTML = "";
+			document.getElementById("englishWordOut").innerHTML = "";
+			document.getElementById("russianWordOut").innerHTML = russianWord;
+		}
+	};
+	function printEnglishWord() {
+		var rusWord = document.getElementById("russianWordOut").innerHTML;
+		var engWord = document.getElementById("englishWordOut").innerHTML;
+		if (engWord.length <= 0 & rusWord.length > 0){ /* если английское слово не выведено в ячейку*/
+			//console.log("печатаем английское слово");
+			document.getElementById("englishWordOut").innerHTML = englishWord;
+		} else { /* английское словое выведено в ячейку*/
+			//console.log("вызываем рандомСледСлово, стираем и русское слово и английское, печатаем английское слово");
+			nextRandomWord(englishWords);
+			document.getElementById("englishWordOut").innerHTML = "";
+			document.getElementById("russianWordOut").innerHTML = "";
+			document.getElementById("englishWordOut").innerHTML = englishWord;
+		}
+	};
+	var englishWords = [
+		"now - сейчас", 
+		"things - вещи, принадлежности", 
+		"want - хотеть, хочу", 
+		"which - который, какой",
+		"has - имеет, обладает", 
+		"both - оба, обе, и тот и другой; также, тоже, одинаково", 
+		"reproduce - воспроизводить, размножатсья, производить, восстанавливать, порождать, делать копию", 
+		"but - но, однако, зато, впрочем, тем не менее", 
+		"different - разные, другой, различный, отличный от, необычный", 
+		"either - или, любой, каждый", 
+		"What does - что значит...", 
+		"the zeroth element - нулевой элемент", 
+		"passed - переданный (от пас)", 
+		"none of the above - ни один из вышеперечисленных", 
+		"of the following - из следущих, из нижеперечисленных", 
+		"given - дано", 
+		"statement - выражение", 
+		"about - о, об, по, насчет, относительно, вокруг", 
+		"want - хотеть",
+		"call - звонить, звать, вызов"
+	];
+	function nextRandomWord(wordsArray) {
+		var wordPair = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+		englishWord = wordPair.split(" - ")[0];
+		russianWord = wordPair.split(" - ")[1];
+	};
+	(function (){
+		document.getElementById("russianWordOut").innerHTML = "";
+		document.getElementById("englishWordOut").innerHTML = "";
+		nextRandomWord(englishWords);
+	}());
+</script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
