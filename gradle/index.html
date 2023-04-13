@@ -43,9 +43,14 @@
 
  <h2>cli utils</h2>
 </br>$ curl -i --raw http://host.domain/path -H 'content-type: application/json' > /tmp/rawResponse.data
+</br>
 </br>$ cat /tmp/rawResponse.data | base64
 </br> . . . {base64value}
+</br>
+</br>$ cat base64value.txt | base64 --decode > rawResponse.data
+</br>
 </br>$ nc -l 80
+</br>
 </br>$ nc -l 80 < rawResponse.data
 </br>
 
