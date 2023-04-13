@@ -41,5 +41,13 @@
 </br>
 </br>$ git remote set-url origin https://newhost.domain/newsubpath/thebest.git
 
+ <h2>cli utils</h2>
+</br>$ curl -i --raw http://host.domain/path -H 'content-type: application/json' > /tmp/rawResponse.data
+</br>$ cat /tmp/rawResponse.data | base64
+</br> . . . {base64value}
+</br>$ nc -l 80
+</br>$ nc -l 80 < rawResponse.data
+</br>
+
 </body>
 </html>
